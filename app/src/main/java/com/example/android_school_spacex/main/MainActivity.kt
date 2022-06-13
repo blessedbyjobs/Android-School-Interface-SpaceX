@@ -1,42 +1,40 @@
 package com.example.android_school_spacex.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import com.example.android_school_spacex.R
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
+import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), CoroutineScope {
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     private val viewModel: MainViewModel by viewModels()
+
+    private var job = Job()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        subscribeUi()
+        launch { subscribeUi() }
     }
 
-    private fun subscribeUi() {
-        viewModel.rockets.observe(this) { state ->
-            when (state) {
-                is MainViewModel.MainState.Success -> {
-                    Log.i("SpaceXApp", "data is successfully downloaded!")
-                }
-                is MainViewModel.MainState.Loading -> {
-                    Log.i("SpaceXApp", "data is loading right now")
-                }
-                is MainViewModel.MainState.Error -> {
-                    Log.i(
-                        "SpaceXApp",
-                        "data received with an error: ${state.error.localizedMessage}"
-                    )
-                }
-            }
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
+    }
+
+    private suspend fun subscribeUi() {
+        viewModel.rockets.collect {
+            // TODO добавить проброс данных в адаптер
         }
     }
 }

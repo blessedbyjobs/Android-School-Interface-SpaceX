@@ -1,53 +1,56 @@
 package com.example.android_school_spacex.main
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.android_school_spacex.data.SpaceXRocket
+import com.example.android_school_spacex.network.LoadState
+import com.example.android_school_spacex.network.Request
+import com.example.android_school_spacex.network.RequestUtils.requestFlow
 import com.example.android_school_spacex.network.SpaceXInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
+@ExperimentalCoroutinesApi
 class MainViewModel @Inject constructor(
-    private val spaceXInteractor: SpaceXInteractor,
-    savedStateHandle: SavedStateHandle
+    private val spaceXInteractor: SpaceXInteractor
 ) : ViewModel() {
 
-    private val mainFlow = MutableStateFlow<MainState>(
-        savedStateHandle.get(ROCKETS_SAVED_STATE_KEY) ?: MainState.Loading
-    )
+    private val _loadState = MutableStateFlow(LoadState.LOADING)
 
-    @ExperimentalCoroutinesApi
-    val rockets = mainFlow.flatMapLatest { getAllRockets() }.asLiveData()
+    private val _rockets = MutableStateFlow(emptyList<SpaceXRocket>())
+    val rockets: StateFlow<List<SpaceXRocket>> get() = _rockets.asStateFlow()
 
     init {
+        loadRockets()
+    }
+
+    private fun loadRockets() {
         viewModelScope.launch {
-            mainFlow.emitAll(getAllRockets())
+            requestFlow {
+                spaceXInteractor.getAllRockets()
+            }.collect { requestState ->
+                when (requestState) {
+                    is Request.Loading -> {
+                        // TODO показать состояние загрузки
+                        _loadState.value = LoadState.LOADING
+                    }
+                    is Request.Success -> {
+                        _rockets.value = requestState.data
+                        _loadState.value = LoadState.SUCCESS
+                    }
+                    is Request.Error -> {
+                        // TODO показать состояние ошибки
+                        _loadState.value = LoadState.ERROR
+                    }
+                }
+            }
         }
-    }
-
-    private fun getAllRockets(): Flow<MainState> {
-        return flow<MainState> {
-            emit(MainState.Success(spaceXInteractor.getAllRockets()))
-        }.catch { error ->
-            emit(MainState.Error(error))
-        }.onStart {
-            emit(MainState.Loading)
-        }
-    }
-
-    companion object {
-        private const val ROCKETS_SAVED_STATE_KEY = "ROCKETS_SAVED_STATE_KEY"
-    }
-
-    sealed class MainState {
-        object Loading : MainState()
-        data class Error(val error: Throwable) : MainState()
-        data class Success(val rockets: List<SpaceXRocket>) : MainState()
     }
 }
