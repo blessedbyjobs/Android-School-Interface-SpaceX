@@ -1,7 +1,6 @@
 package com.example.android_school_spacex.network
 
-import com.example.android_school_spacex.network.ServerUrls
-import com.example.android_school_spacex.response.SpaceXRocketObj
+import com.example.android_school_spacex.network.response.SpaceXRocketObj
 import retrofit2.http.GET
 
 interface SpaceXApi {

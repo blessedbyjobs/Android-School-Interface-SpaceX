@@ -1,7 +1,7 @@
-package com.example.android_school_spacex.response
+package com.example.android_school_spacex.network.response
 
-import com.example.android_school_spacex.network.Transformable
 import com.example.android_school_spacex.data.Dimension
+import com.example.android_school_spacex.network.Transformable
 import kotlinx.serialization.Serializable
 
 @Serializable
