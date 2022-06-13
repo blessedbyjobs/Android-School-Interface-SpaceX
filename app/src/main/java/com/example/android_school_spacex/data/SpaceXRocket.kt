@@ -27,7 +27,7 @@ package com.example.android_school_spacex.data
  * @param rocketType тип ракеты
  */
 data class SpaceXRocket(
-    val id: Int,
+    val id: String,
     val active: Boolean,
     val stages: Int,
     val boosters: Int,

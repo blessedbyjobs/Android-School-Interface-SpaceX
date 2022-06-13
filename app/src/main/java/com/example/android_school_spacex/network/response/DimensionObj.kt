@@ -1,12 +1,13 @@
-package com.example.android_school_spacex.response
+package com.example.android_school_spacex.network.response
 
-import com.example.android_school_spacex.Transformable
 import com.example.android_school_spacex.data.Dimension
-import com.google.gson.annotations.SerializedName
+import com.example.android_school_spacex.network.Transformable
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class DimensionObj(
-    @SerializedName("meters") val meters: Double? = null,
-    @SerializedName("feet") val feet: Double? = null
+    val meters: Double? = null,
+    val feet: Double? = null
 ) : Transformable<Dimension> {
 
     override fun transform(): Dimension {
