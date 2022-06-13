@@ -1,15 +1,16 @@
 package com.example.android_school_spacex.response
 
-import com.example.android_school_spacex.Transformable
+import com.example.android_school_spacex.network.Transformable
 import com.example.android_school_spacex.data.SecondStage
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class SecondStageObj(
-    @SerializedName("engines") val engines: Int? = null,
-    @SerializedName("fuel_amount_tons") val fuelAmountTons: Double? = null,
-    @SerializedName("burn_time_sec") val burnTimeSec: Int? = null,
-    @SerializedName("thrust") val thrustObj: ThrustObj = ThrustObj(),
-    @SerializedName("payloads") val payloadsObj: PayloadsObj = PayloadsObj()
+    val engines: Int? = null,
+    val fuelAmountTons: Double? = null,
+    val burnTimeSec: Int? = null,
+    val thrustObj: ThrustObj = ThrustObj(),
+    val payloadsObj: PayloadsObj = PayloadsObj()
 ) : Transformable<SecondStage> {
 
     override fun transform(): SecondStage {

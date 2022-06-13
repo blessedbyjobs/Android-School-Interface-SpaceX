@@ -1,12 +1,13 @@
 package com.example.android_school_spacex.response
 
-import com.example.android_school_spacex.Transformable
+import com.example.android_school_spacex.network.Transformable
 import com.example.android_school_spacex.data.CompositeFairing
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CompositeFairingObj(
-    @SerializedName("height") val heightObj: DimensionObj = DimensionObj(),
-    @SerializedName("diameter") val diameterObj: DimensionObj = DimensionObj()
+    val heightObj: DimensionObj = DimensionObj(),
+    val diameterObj: DimensionObj = DimensionObj()
 ) : Transformable<CompositeFairing> {
 
     override fun transform(): CompositeFairing {
