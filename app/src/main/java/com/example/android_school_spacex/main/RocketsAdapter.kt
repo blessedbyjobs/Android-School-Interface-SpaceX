@@ -2,10 +2,13 @@ package com.example.android_school_spacex.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_school_spacex.data.SpaceXRocket
 import com.example.android_school_spacex.databinding.ItemControllerRocketBinding
+import com.example.android_school_spacex.service.NotSpecifiedUtils.getImageAccordingToId
+import com.example.android_school_spacex.service.StringUtils.getFormattedDateWithYear
 
 class RocketsAdapter : RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
 
@@ -23,7 +26,9 @@ class RocketsAdapter : RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
     override fun onBindViewHolder(holder: RocketViewHolder, position: Int) {
         val rocketData = rockets[position]
 
-        holder.content.text = rocketData.rocketName
+        holder.name.text = rocketData.rocketName
+        holder.launchDate.text = rocketData.firstFlight.getFormattedDateWithYear()
+        holder.image.setImageResource(rocketData.getImageAccordingToId())
     }
 
     fun update(data: List<SpaceXRocket>) {
@@ -34,6 +39,8 @@ class RocketsAdapter : RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
     inner class RocketViewHolder(
         binding: ItemControllerRocketBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        val content: TextView = binding.rocketContentTv
+        val name: TextView = binding.rocketNameTv
+        val launchDate: TextView = binding.rocketLaunchDateTv
+        val image: ImageView = binding.rocketIv
     }
 }
