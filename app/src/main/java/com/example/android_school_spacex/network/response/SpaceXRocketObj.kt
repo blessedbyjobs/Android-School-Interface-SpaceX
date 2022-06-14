@@ -25,9 +25,8 @@ data class SpaceXRocketObj(
     val landingLegsObj: LandingLegsObj = LandingLegsObj(),
     val wikipediaUrl: String? = null,
     val description: String? = null,
-    val rocketId: String? = null,
-    val rocketName: String? = null,
-    val rocketType: String? = null
+    val name: String? = null,
+    val type: String? = null
 ) : Transformable<SpaceXRocket> {
 
     override fun transform(): SpaceXRocket {
@@ -51,9 +50,8 @@ data class SpaceXRocketObj(
             landingLegs = landingLegsObj.transform(),
             wikipediaUrl = wikipediaUrl ?: "",
             description = description ?: "",
-            rocketId = rocketId ?: "",
-            rocketName = rocketName ?: "",
-            rocketType = rocketType ?: ""
+            rocketName = name ?: "",
+            rocketType = type ?: ""
         )
     }
 }
