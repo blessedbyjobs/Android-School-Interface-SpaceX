@@ -3,7 +3,8 @@ package com.example.android_school_spacex.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
-import com.example.android_school_spacex.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android_school_spacex.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
@@ -17,12 +18,17 @@ class MainActivity : ComponentActivity(), CoroutineScope {
         get() = Dispatchers.Main + job
 
     private val viewModel: MainViewModel by viewModels()
+    private val rocketsAdapter = RocketsAdapter()
+
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private var job = Job()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+
+        initViews()
 
         launch { subscribeUi() }
     }
@@ -32,9 +38,16 @@ class MainActivity : ComponentActivity(), CoroutineScope {
         job.cancel()
     }
 
+    private fun initViews() {
+        with(binding.rocketsRv) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = rocketsAdapter
+        }
+    }
+
     private suspend fun subscribeUi() {
-        viewModel.rockets.collect {
-            // TODO добавить проброс данных в адаптер
+        viewModel.rockets.collect { rockets ->
+            rocketsAdapter.update(rockets)
         }
     }
 }

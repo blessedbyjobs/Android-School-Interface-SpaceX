@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Android-School-Interface-SpaceX</string>
+    <string name="app_name">Surf-SpaceX</string>
+
+    <string name="content_description">content_description</string>
 </resources>

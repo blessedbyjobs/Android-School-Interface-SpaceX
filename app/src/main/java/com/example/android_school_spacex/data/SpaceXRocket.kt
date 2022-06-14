@@ -22,7 +22,6 @@ package com.example.android_school_spacex.data
  * @param landingLegs данные опор
  * @param wikipediaUrl ссылка на вики
  * @param description описание
- * @param rocketId идентификатор ракеты
  * @param rocketName название ракеты
  * @param rocketType тип ракеты
  */
@@ -46,7 +45,6 @@ data class SpaceXRocket(
     val landingLegs: LandingLegs,
     val wikipediaUrl: String,
     val description: String,
-    val rocketId: String,
     val rocketName: String,
     val rocketType: String
 )

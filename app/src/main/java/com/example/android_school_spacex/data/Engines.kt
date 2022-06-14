@@ -24,5 +24,5 @@ data class Engines(
     val propellant2: String,
     val thrustSeaLevel: Thrust,
     val thrustVacuum: Thrust,
-    val thrustToWeight: Int
+    val thrustToWeight: Double
 )
