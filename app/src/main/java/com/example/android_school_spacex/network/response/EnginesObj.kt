@@ -10,12 +10,12 @@ data class EnginesObj(
     val type: String? = null,
     val version: String? = null,
     val layout: String? = null,
-    val engineLossMax: Int? = null,
+    val engine_loss_max: Int? = null,
     val propellant1: String? = null,
     val propellant2: String? = null,
-    val thrustSeaLevelObj: ThrustObj = ThrustObj(),
-    val thrustVacuumObj: ThrustObj = ThrustObj(),
-    val thrustToWeight: Int? = null
+    val thrust_sea_level: ThrustObj = ThrustObj(),
+    val thrust_vacuum: ThrustObj = ThrustObj(),
+    val thrust_to_weight: Double? = null
 ) : Transformable<Engines> {
 
     override fun transform(): Engines {
@@ -24,12 +24,12 @@ data class EnginesObj(
             type = type ?: "",
             version = version ?: "",
             layout = layout ?: "",
-            engineLossMax = engineLossMax ?: 0,
+            engineLossMax = engine_loss_max ?: 0,
             propellant1 = propellant1 ?: "",
             propellant2 = propellant2 ?: "",
-            thrustSeaLevel = thrustSeaLevelObj.transform(),
-            thrustVacuum = thrustVacuumObj.transform(),
-            thrustToWeight = thrustToWeight ?: 0
+            thrustSeaLevel = thrust_sea_level.transform(),
+            thrustVacuum = thrust_vacuum.transform(),
+            thrustToWeight = thrust_to_weight ?: 0.0
         )
     }
 }

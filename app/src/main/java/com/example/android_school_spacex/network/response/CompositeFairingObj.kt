@@ -6,14 +6,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CompositeFairingObj(
-    val heightObj: DimensionObj = DimensionObj(),
-    val diameterObj: DimensionObj = DimensionObj()
+    val height: DimensionObj = DimensionObj(),
+    val diameter: DimensionObj = DimensionObj()
 ) : Transformable<CompositeFairing> {
 
     override fun transform(): CompositeFairing {
         return CompositeFairing(
-            height = heightObj.transform(),
-            diameter = diameterObj.transform()
+            height = height.transform(),
+            diameter = diameter.transform()
         )
     }
 }

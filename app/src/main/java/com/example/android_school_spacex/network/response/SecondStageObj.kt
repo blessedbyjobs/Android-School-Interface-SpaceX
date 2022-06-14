@@ -9,8 +9,8 @@ data class SecondStageObj(
     val engines: Int? = null,
     val fuelAmountTons: Double? = null,
     val burnTimeSec: Int? = null,
-    val thrustObj: ThrustObj = ThrustObj(),
-    val payloadsObj: PayloadsObj = PayloadsObj()
+    val thrust: ThrustObj = ThrustObj(),
+    val payloads: PayloadsObj = PayloadsObj()
 ) : Transformable<SecondStage> {
 
     override fun transform(): SecondStage {
@@ -18,8 +18,8 @@ data class SecondStageObj(
             engines = engines ?: 1,
             fuelAmountTons = fuelAmountTons ?: 0.0,
             burnTimeSec = burnTimeSec ?: 0,
-            thrust = thrustObj.transform(),
-            payloads = payloadsObj.transform()
+            thrust = thrust.transform(),
+            payloads = payloads.transform()
         )
     }
 }
