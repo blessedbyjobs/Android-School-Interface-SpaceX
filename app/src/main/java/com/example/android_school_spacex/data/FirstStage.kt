@@ -1,5 +1,7 @@
 package com.example.android_school_spacex.data
 
+import java.io.Serializable
+
 /**
  * Данные первой ступени
  *
@@ -17,4 +19,4 @@ data class FirstStage(
     val burnTimeSec: Int,
     val thrustSeaLevel: Thrust,
     val thrustVacuum: Thrust
-)
+) : Serializable

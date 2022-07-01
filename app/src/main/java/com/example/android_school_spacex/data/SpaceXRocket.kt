@@ -1,5 +1,7 @@
 package com.example.android_school_spacex.data
 
+import java.io.Serializable
+
 /**
  * Данные о ракете
  *
@@ -47,4 +49,4 @@ data class SpaceXRocket(
     val description: String,
     val rocketName: String,
     val rocketType: String
-)
+) : Serializable

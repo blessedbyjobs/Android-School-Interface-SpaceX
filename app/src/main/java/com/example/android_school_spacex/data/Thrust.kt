@@ -1,5 +1,7 @@
 package com.example.android_school_spacex.data
 
+import java.io.Serializable
+
 /**
  * Данные тяги
  *
@@ -9,4 +11,4 @@ package com.example.android_school_spacex.data
 data class Thrust(
     val kN: Int,
     val lbf: Int
-)
+) : Serializable

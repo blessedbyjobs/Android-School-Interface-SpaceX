@@ -1,5 +1,7 @@
 package com.example.android_school_spacex.data
 
+import java.io.Serializable
+
 /**
  * Данные посадочных опор
  *
@@ -9,4 +11,4 @@ package com.example.android_school_spacex.data
 data class LandingLegs(
     val number: Int,
     val material: String
-)
+) : Serializable

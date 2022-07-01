@@ -1,5 +1,7 @@
 package com.example.android_school_spacex.data
 
+import java.io.Serializable
+
 /**
  * Данные нагрузки
  *
@@ -11,4 +13,4 @@ data class PayloadWeights(
     val id: String,
     val name: String,
     val mass: Mass
-)
+) : Serializable

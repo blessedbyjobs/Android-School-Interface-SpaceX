@@ -1,5 +1,7 @@
 package com.example.android_school_spacex.data
 
+import java.io.Serializable
+
 /**
  * Головной обтекатель
  *
@@ -9,4 +11,4 @@ package com.example.android_school_spacex.data
 data class CompositeFairing(
     val height: Dimension,
     val diameter: Dimension
-)
+) : Serializable
