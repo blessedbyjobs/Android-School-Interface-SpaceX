@@ -1,5 +1,6 @@
 package com.example.android_school_spacex.main
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -7,9 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_school_spacex.data.SpaceXRocket
 import com.example.android_school_spacex.databinding.ItemControllerRocketBinding
+import com.example.android_school_spacex.rocket_detail.RocketDetailsActivity
 import com.example.android_school_spacex.service.NotSpecifiedUtils.getImageAccordingToId
 import com.example.android_school_spacex.service.StringUtils.getFormattedDateWithYear
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class RocketsAdapter : RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
 
     private var rockets: List<SpaceXRocket> = emptyList()
@@ -29,6 +33,14 @@ class RocketsAdapter : RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
         holder.name.text = rocketData.rocketName
         holder.launchDate.text = rocketData.firstFlight.getFormattedDateWithYear()
         holder.image.setImageResource(rocketData.getImageAccordingToId())
+
+        holder.itemView.setOnClickListener { view ->
+            view.context.startActivity(
+                Intent(view.context, RocketDetailsActivity::class.java).apply {
+                    putExtra("ROCKET_DATA", rocketData)
+                }
+            )
+        }
     }
 
     fun update(data: List<SpaceXRocket>) {
