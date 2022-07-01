@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RocketDetailView">
+        <attr name="rdv_title" format="reference" />
+        <attr name="rdv_subTitle" format="reference" />
+    </declare-styleable>
+
+</resources>
