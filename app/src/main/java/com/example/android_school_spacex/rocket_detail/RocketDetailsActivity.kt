@@ -6,10 +6,14 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_school_spacex.databinding.ActivityRocketDetailsBinding
 import com.example.android_school_spacex.rocket_detail.controller.RocketCarouselController
+import com.example.android_school_spacex.rocket_detail.controller.RocketLogoController
+import com.example.android_school_spacex.rocket_detail.data.RocketDetailsUiItem
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
+import ru.surfstudio.android.easyadapter.item.BindableItem
+import ru.surfstudio.android.easyadapter.item.NoDataItem
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -27,6 +31,7 @@ class RocketDetailsActivity : ComponentActivity(), CoroutineScope {
         MyViewModelFactory(this, intent.extras)
     }
 
+    private val rocketLogoController = RocketLogoController()
     private val detailsCarouselController = RocketCarouselController()
 
     private val easyAdapter = EasyAdapter()
@@ -53,9 +58,17 @@ class RocketDetailsActivity : ComponentActivity(), CoroutineScope {
 
     private fun subscribeUi() {
         launch {
-            viewModel.details.collect { details ->
-                val items = ItemList.create().add(details, detailsCarouselController)
-                easyAdapter.setItems(items)
+            viewModel.items.collect { items ->
+                val uiItems = items.map { uiItem ->
+                    when (uiItem) {
+                        is RocketDetailsUiItem.UiLogoItem -> NoDataItem(rocketLogoController)
+                        is RocketDetailsUiItem.UiRocketDetailsItem -> BindableItem(
+                            uiItem.details,
+                            detailsCarouselController
+                        )
+                    }
+                }
+                easyAdapter.setItems(ItemList(uiItems))
             }
         }
         launch {

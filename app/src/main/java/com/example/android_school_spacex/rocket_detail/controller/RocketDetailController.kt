@@ -7,6 +7,9 @@ import com.example.android_school_spacex.databinding.ItemRocketDetailBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
+/**
+ * Контроллер для конкретной детали
+ */
 class RocketDetailController :
     BindableItemController<SeparateRocketDetail, RocketDetailController.Holder>() {
 

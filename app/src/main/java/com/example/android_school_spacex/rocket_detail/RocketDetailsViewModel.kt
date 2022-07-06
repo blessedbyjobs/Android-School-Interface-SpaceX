@@ -3,8 +3,9 @@ package com.example.android_school_spacex.rocket_detail
 import android.os.Bundle
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistryOwner
-import com.example.android_school_spacex.data.SeparateRocketDetail
 import com.example.android_school_spacex.data.SpaceXRocket
+import com.example.android_school_spacex.rocket_detail.data.RocketDetailsItemsCreator
+import com.example.android_school_spacex.rocket_detail.data.RocketDetailsUiItem
 import com.example.android_school_spacex.service.NotSpecifiedUtils.getSeparateDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,20 +29,22 @@ class RocketDetailsViewModel @Inject constructor(
     /** Заголовок экрана **/
     val screenTitle: StateFlow<String> get() = _screenTitle.asStateFlow()
 
-    private val _details = MutableStateFlow(emptyList<SeparateRocketDetail>())
+    private val _items = MutableStateFlow(emptyList<RocketDetailsUiItem>())
 
-    /** Список деталей **/
-    val details: StateFlow<List<SeparateRocketDetail>> get() = _details.asStateFlow()
+    /** Список элементов экрана **/
+    val items: StateFlow<List<RocketDetailsUiItem>> get() = _items.asStateFlow()
 
     init {
-        loadDetails()
+        loadData()
     }
 
-    private fun loadDetails() {
+    private fun loadData() {
         viewModelScope.launch {
             savedStateHandle.get<SpaceXRocket>("ROCKET_DATA")?.let { rocket ->
                 _screenTitle.value = rocket.rocketName
-                _details.value = rocket.getSeparateDetails()
+                _items.value = RocketDetailsItemsCreator.createUiItems(
+                    rocket.getSeparateDetails()
+                )
             }
         }
     }

@@ -3,4 +3,5 @@
     android:id="@+id/rocket_details_carousel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="16dp"
     android:paddingHorizontal="6dp" />
