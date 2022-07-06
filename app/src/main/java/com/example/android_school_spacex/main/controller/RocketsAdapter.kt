@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_school_spacex.data.SpaceXRocket
 import com.example.android_school_spacex.databinding.ItemControllerRocketBinding
@@ -37,7 +38,7 @@ class RocketsAdapter : RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
         holder.launchDate.text = rocketData.firstFlight.getFormattedDateWithYear()
         holder.image.setImageResource(rocketData.getImageAccordingToId())
 
-        holder.itemView.setOnClickListener { view ->
+        holder.container.setOnClickListener { view ->
             view.context.startActivity(
                 Intent(view.context, RocketDetailsActivity::class.java).apply {
                     putExtra("ROCKET_DATA", rocketData)
@@ -57,6 +58,7 @@ class RocketsAdapter : RecyclerView.Adapter<RocketsAdapter.RocketViewHolder>() {
     inner class RocketViewHolder(
         binding: ItemControllerRocketBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+        val container: ConstraintLayout = binding.rocketContainerCl
         val name: TextView = binding.rocketNameTv
         val launchDate: TextView = binding.rocketLaunchDateTv
         val image: ImageView = binding.rocketIv

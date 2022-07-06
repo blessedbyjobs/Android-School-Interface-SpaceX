@@ -3,7 +3,7 @@ package com.example.android_school_spacex.rocket_detail.controller
 import android.view.ViewGroup
 import com.example.android_school_spacex.R
 import com.example.android_school_spacex.data.SeparateRocketDetail
-import com.example.android_school_spacex.databinding.ItemRocketCarouselBinding
+import com.example.android_school_spacex.databinding.ItemControllerRocketCarouselBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
@@ -18,9 +18,12 @@ class RocketCarouselController :
     override fun createViewHolder(parent: ViewGroup): Holder = Holder(parent)
 
     inner class Holder(parent: ViewGroup) :
-        BindableViewHolder<List<SeparateRocketDetail>>(parent, R.layout.item_rocket_carousel) {
+        BindableViewHolder<List<SeparateRocketDetail>>(
+            parent,
+            R.layout.item_controller_rocket_carousel
+        ) {
 
-        private val binding = ItemRocketCarouselBinding.bind(itemView)
+        private val binding = ItemControllerRocketCarouselBinding.bind(itemView)
 
         override fun bind(data: List<SeparateRocketDetail>) {
             binding.rocketDetailsCarousel.setup(data)
