@@ -8,6 +8,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 
+/**
+ * Модуль поставляющий зависимости для получения данных SpaceX
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class SpaceXModule {

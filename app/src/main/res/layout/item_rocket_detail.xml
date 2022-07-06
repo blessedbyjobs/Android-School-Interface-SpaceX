@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <com.example.android_school_spacex.view.RocketDetailView
+        android:id="@+id/rocket_detail_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:rdv_subtitle="Высота, ft"
+        tools:rdv_title="229,6" />
+
+</LinearLayout>

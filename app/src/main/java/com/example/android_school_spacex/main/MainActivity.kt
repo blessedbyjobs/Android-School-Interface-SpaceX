@@ -5,11 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_school_spacex.databinding.ActivityMainBinding
+import com.example.android_school_spacex.main.controller.RocketsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Главный экран приложения: список ракет
+ */
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(), CoroutineScope {

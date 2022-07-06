@@ -1,5 +1,7 @@
 package com.example.android_school_spacex.data
 
+import java.io.Serializable
+
 /**
  * Данные величины (диаметр, высота и т.д.)
  *
@@ -9,4 +11,4 @@ package com.example.android_school_spacex.data
 data class Dimension(
     val meters: Double,
     val feet: Double
-)
+) : Serializable

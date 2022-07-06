@@ -1,5 +1,7 @@
 package com.example.android_school_spacex.data
 
+import java.io.Serializable
+
 /**
  * Данные двигателей
  *
@@ -25,4 +27,4 @@ data class Engines(
     val thrustSeaLevel: Thrust,
     val thrustVacuum: Thrust,
     val thrustToWeight: Double
-)
+) : Serializable
