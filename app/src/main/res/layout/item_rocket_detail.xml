@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
 
-    <com.example.android_school_spacex.rocket_detail.RocketDetailView
+    <com.example.android_school_spacex.view.RocketDetailView
         android:id="@+id/rocket_detail_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
