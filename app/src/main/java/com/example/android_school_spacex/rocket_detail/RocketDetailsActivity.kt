@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_school_spacex.databinding.ActivityRocketDetailsBinding
+import com.example.android_school_spacex.rocket_detail.controller.RocketBannerController
 import com.example.android_school_spacex.rocket_detail.controller.RocketCarouselController
 import com.example.android_school_spacex.rocket_detail.controller.RocketLogoController
 import com.example.android_school_spacex.rocket_detail.data.RocketDetailsUiItem
@@ -33,6 +34,7 @@ class RocketDetailsActivity : ComponentActivity(), CoroutineScope {
 
     private val rocketLogoController = RocketLogoController()
     private val detailsCarouselController = RocketCarouselController()
+    private val bannerController = RocketBannerController()
 
     private val easyAdapter = EasyAdapter()
 
@@ -65,6 +67,10 @@ class RocketDetailsActivity : ComponentActivity(), CoroutineScope {
                         is RocketDetailsUiItem.UiRocketDetailsItem -> BindableItem(
                             uiItem.details,
                             detailsCarouselController
+                        )
+                        is RocketDetailsUiItem.UiRocketDetailsBannerItem -> BindableItem(
+                            uiItem.data,
+                            bannerController
                         )
                     }
                 }

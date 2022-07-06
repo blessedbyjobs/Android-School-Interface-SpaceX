@@ -2,6 +2,6 @@
 <com.example.android_school_spacex.view.RocketDetailsCarouselView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rocket_details_carousel"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
     android:paddingHorizontal="6dp" />

@@ -13,7 +13,7 @@ import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 class RocketCarouselController :
     BindableItemController<List<SeparateRocketDetail>, RocketCarouselController.Holder>() {
 
-    override fun getItemId(data: List<SeparateRocketDetail>) = data.hashCode()
+    override fun getItemId(data: List<SeparateRocketDetail>) = "ROCKET_CAROUSEL_CONTROLLER"
 
     override fun createViewHolder(parent: ViewGroup): Holder = Holder(parent)
 
