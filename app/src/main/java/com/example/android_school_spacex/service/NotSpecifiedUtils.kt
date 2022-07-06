@@ -5,6 +5,9 @@ import com.example.android_school_spacex.R
 import com.example.android_school_spacex.data.SeparateRocketDetail
 import com.example.android_school_spacex.data.SpaceXRocket
 
+/**
+ * Объект с утилитарными методами, которые сложно классифицировать
+ */
 object NotSpecifiedUtils {
 
     /**
@@ -21,6 +24,9 @@ object NotSpecifiedUtils {
         }
     }
 
+    /**
+     * @return список с упрощенными деталями ракеты
+     */
     fun SpaceXRocket.getSeparateDetails(): MutableList<SeparateRocketDetail> {
         val details = mutableListOf<SeparateRocketDetail>()
         with(details) {

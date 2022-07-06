@@ -16,6 +16,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel главного экран приложения
+ */
 @HiltViewModel
 @ExperimentalCoroutinesApi
 class MainViewModel @Inject constructor(
@@ -25,6 +28,8 @@ class MainViewModel @Inject constructor(
     private val _loadState = MutableStateFlow(LoadState.LOADING)
 
     private val _rockets = MutableStateFlow(emptyList<SpaceXRocket>())
+
+    /** Список ракет **/
     val rockets: StateFlow<List<SpaceXRocket>> get() = _rockets.asStateFlow()
 
     init {

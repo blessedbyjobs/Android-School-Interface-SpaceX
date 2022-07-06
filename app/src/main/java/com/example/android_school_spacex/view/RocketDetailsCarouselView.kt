@@ -1,4 +1,4 @@
-package com.example.android_school_spacex.rocket_detail
+package com.example.android_school_spacex.view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_school_spacex.data.SeparateRocketDetail
 import com.example.android_school_spacex.databinding.RocketDetailsCarouselViewBinding.inflate
+import com.example.android_school_spacex.rocket_detail.controller.RocketDetailController
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 

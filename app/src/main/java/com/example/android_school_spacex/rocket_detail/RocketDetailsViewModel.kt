@@ -14,6 +14,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel детального экрана с данными ракеты
+ */
 @HiltViewModel
 @ExperimentalCoroutinesApi
 class RocketDetailsViewModel @Inject constructor(
@@ -21,9 +24,13 @@ class RocketDetailsViewModel @Inject constructor(
 ) : ViewModel(), LifecycleObserver {
 
     private val _screenTitle = MutableStateFlow("")
+
+    /** Заголовок экрана **/
     val screenTitle: StateFlow<String> get() = _screenTitle.asStateFlow()
 
     private val _details = MutableStateFlow(emptyList<SeparateRocketDetail>())
+
+    /** Список деталей **/
     val details: StateFlow<List<SeparateRocketDetail>> get() = _details.asStateFlow()
 
     init {

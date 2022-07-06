@@ -5,12 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_school_spacex.databinding.ActivityRocketDetailsBinding
+import com.example.android_school_spacex.rocket_detail.controller.RocketCarouselController
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Детальный экран с данными ракеты
+ */
 @ExperimentalCoroutinesApi
 class RocketDetailsActivity : ComponentActivity(), CoroutineScope {
 

@@ -14,6 +14,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
+/**
+ * Модуль поставляющий зависимости для работы с сетью
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {

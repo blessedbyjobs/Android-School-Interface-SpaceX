@@ -1,4 +1,4 @@
-package com.example.android_school_spacex.rocket_detail
+package com.example.android_school_spacex.view
 
 import android.content.Context
 import android.util.AttributeSet
